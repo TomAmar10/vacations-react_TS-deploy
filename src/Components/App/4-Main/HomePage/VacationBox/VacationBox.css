@@ -13,32 +13,35 @@
   box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 25px 10px,
     rgba(0, 0, 0, 0.3) 0px 0px 0px 1px;
 }
-.VacationBox .destination-img {
-  width: 20rem;
+.vacation-background {
   height: 14rem;
+  width: 20rem;
   border-radius: 20px 20px 0 0;
+  text-align: right;
+  background-size: cover;
+}
+.admin-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .edit-img,
 .delete-img {
   box-shadow: inset rgb(241, 242, 249) 0px 4px 38px,
     rgb(151, 169, 227) 0px 2px 12px;
   background: rgba(99, 89, 167, 0.7);
-  position: absolute;
   width: 1.7rem;
   height: 1.7rem;
   border-radius: 20px;
   padding: 0.3rem;
   cursor: pointer;
   margin-top: 0.5rem;
-  margin-left: 17.5rem;
+  margin-right: 0.5rem;
 }
 .edit-img:hover,
 .delete-img:hover {
   padding: 0.4rem;
   transition: padding 0.2s;
-}
-.edit-img {
-  margin-top: 3rem;
 }
 
 .details-container {
@@ -92,43 +95,28 @@
 }
 
 .vacation-follow-btn {
-  position: absolute;
-  margin-left: 14.5rem;
   margin-top: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 @media only screen and (max-width: 340px) {
   .VacationBox,
-  .VacationBox .destination-img,
+  .VacationBox .vacation-background,
   .vacation-description {
     width: 18rem;
-  }
-  .vacation-follow-btn {
-    margin-left: 12.5rem;
-  }
-  .edit-img,
-  .delete-img {
-    margin-left: 15.5rem;
   }
 }
 
 @media only screen and (max-width: 300px) {
   .VacationBox,
-  .VacationBox .destination-img,
+  .VacationBox .vacation-background,
   .vacation-description {
     width: 17rem;
-  }
-  .vacation-follow-btn {
-    margin-left: 11.5rem;
-  }
-  .edit-img,
-  .delete-img {
-    margin-left: 14.5rem;
   }
 }
 @media only screen and (max-width: 275px) {
   .VacationBox,
-  .VacationBox .destination-img,
+  .VacationBox .vacation-background,
   .vacation-description {
     width: 15rem;
     font-size: 0.8rem;
@@ -138,13 +126,6 @@
   }
   .vacation-dates {
     margin-top: 0.5rem;
-  }
-  .vacation-follow-btn {
-    margin-left: 9.5rem;
-  }
-  .edit-img,
-  .delete-img {
-    margin-left: 12.5rem;
   }
   .top-vacation-box h3 {
     font-size: 1rem;

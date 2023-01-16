@@ -64,31 +64,6 @@ function VacationBox(props: Props): JSX.Element {
 
   return (
     <div className="VacationBox">
-      {user.role === Role.Admin ? (
-        !props.imgToShow && (
-          <React.Fragment>
-            <img
-              src={require("../../../../../images/delete.png")}
-              alt={vacation.destination}
-              onClick={() => dispatch(modalActions.adminModal(vacation))}
-              className="delete-img"
-            />
-            <img
-              src={require("../../../../../images/edit.png")}
-              alt=""
-              onClick={() => navigate(`/vacation/edit/${vacation.id}`)}
-              className="edit-img"
-            />
-          </React.Fragment>
-        )
-      ) : (
-        <Button2
-          className="vacation-follow-btn"
-          style={{ backgroundColor: isFollow ? "rgb(47, 47, 154)" : "green" }}
-          value={isFollow ? "unfollow" : "follow"}
-          onClick={followHandler}
-        />
-      )}
       <div className="vacation-description">
         <p>{vacation.description}</p>
       </div>
@@ -97,15 +72,40 @@ function VacationBox(props: Props): JSX.Element {
           <Spinner />
         </div>
       ) : (
-        <img
-          src={
-            props.imgToShow
-              ? props.imgToShow
-              : `${config.address}/${vacation.image}`
-          }
-          alt=""
-          className="destination-img"
-        />
+        <div
+          className="vacation-background"
+          style={{
+            backgroundImage: `url(${config.address}/${vacation.image})`,
+          }}
+        >
+          {user.role === Role.Admin ? (
+            !props.imgToShow && (
+              <div className="admin-buttons">
+                <img
+                  src={require("../../../../../images/delete.png")}
+                  alt={vacation.destination}
+                  onClick={() => dispatch(modalActions.adminModal(vacation))}
+                  className="delete-img"
+                />
+                <img
+                  src={require("../../../../../images/edit.png")}
+                  alt=""
+                  onClick={() => navigate(`/vacation/edit/${vacation.id}`)}
+                  className="edit-img"
+                />
+              </div>
+            )
+          ) : (
+            <Button2
+              className="vacation-follow-btn"
+              style={{
+                backgroundColor: isFollow ? "rgb(47, 47, 154)" : "green",
+              }}
+              value={isFollow ? "unfollow" : "follow"}
+              onClick={followHandler}
+            />
+          )}
+        </div>
       )}
       <div className="details-container">
         <div className="top-vacation-box">
