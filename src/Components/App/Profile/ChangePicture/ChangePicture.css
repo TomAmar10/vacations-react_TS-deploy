@@ -1,0 +1,137 @@
+.change-picture-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.ChangePicture {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1rem;
+  width: 25rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 20px 20px 10px;
+  border-radius: 10px;
+  background-color: rgb(247, 246, 253);
+}
+
+.ChangePicture form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ChangePicture form > * {
+  margin-top: 1rem;
+}
+.ChangePicture input::-webkit-file-upload-button {
+  visibility: hidden;
+  width: 100%;
+}
+.ChangePicture input::before {
+  content: "Choose a new picture";
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 3px;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+.ChangePicture input:hover::before {
+  border-color: black;
+}
+.ChangePicture input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.image-to-show-bg {
+  background-color: rgb(160, 160, 218);
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  height: 18rem;
+}
+.profile-image-change {
+  width: 15rem;
+  height: 18rem;
+  border-radius: 10px;
+}
+
+.change-profile-arrow-back {
+  position: absolute;
+  margin-left: -23.5rem;
+  margin-top: -25rem;
+  cursor: pointer;
+}
+
+.remove-profile-btn {
+  position: absolute;
+  font-size: 1.5rem;
+  margin-left: -2.7rem;
+  cursor: pointer;
+  background-color: rgb(199, 198, 198, 0.8);
+  border-radius: 20%;
+  padding: 0.4rem;
+}
+.remove-profile-btn:hover {
+  background-color: rgba(158, 157, 157, 0.8);
+}
+
+.no-image-span {
+  font-size: 0.8rem;
+}
+
+@media only screen and (max-width: 1100px) {
+  .ChangePicture {
+    padding: 1rem 1rem;
+    width: 22rem;
+  }
+  .change-profile-arrow-back {
+    margin-left: -20.5rem;
+    margin-top: -25rem;
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 870px) {
+  .image-to-show-bg {
+    height: 14.5rem;
+  }
+  .profile-image-change {
+    width: 13rem;
+    height: 14.5rem;
+    border-radius: 10px;
+  }
+  .change-profile-arrow-back {
+    margin-left: -20.5rem;
+    margin-top: -21rem;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  .ChangePicture {
+    width: 20rem;
+  }
+  .image-to-show-bg {
+    height: 14.5rem;
+  }
+  .profile-image-change {
+    width: 12rem;
+    height: 14.5rem;
+  }
+  .change-profile-arrow-back {
+    margin-left: -18.5rem;
+    margin-top: -21.5rem;
+  }
+}
+
+@media only screen and (max-width: 435px) {
+  .change-profile-arrow-back {
+    visibility: hidden;
+  }
+}

@@ -1,0 +1,76 @@
+.Register {
+  display: flex;
+  justify-content: center;
+}
+
+.register-form {
+  width: 25rem;
+  padding: 2rem 1rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 20px 20px 10px;
+  border-radius: 10px;
+  background-color: rgb(247, 246, 253);
+}
+
+.register-form > div {
+  padding: 0.4rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.register-form h2 {
+  margin-top: 0;
+}
+
+.register-form .register-input-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.register-input-area p:first-child {
+  position: absolute;
+  margin-bottom: 3.8rem;
+  margin-left: 5rem;
+  color: red;
+  font-size: 0.8rem;
+}
+
+.register-image-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.register-image-area > * {
+  margin-top: 2px;
+}
+.register-image-area input::-webkit-file-upload-button {
+  visibility: hidden;
+  width: 100%;
+}
+
+.register-image-area input::before {
+  content: "Choose your profile picture";
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid rgb(195, 193, 193);
+  border-radius: 3px;
+  padding: 9px 0px;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  color: gray;
+}
+.uploaded input::before {
+  content: "image uploaded ✔️";
+  padding: 7px 3px;
+}
+.register-image-area input:hover::before {
+  border-color: black;
+}
+.register-image-area input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}

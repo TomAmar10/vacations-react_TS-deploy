@@ -1,0 +1,64 @@
+.ProfileEdit {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.profile-edit-form {
+  width: 25rem;
+  padding: 2rem 1rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 20px 20px 10px;
+  border-radius: 10px;
+  background-color: rgb(247, 246, 253);
+}
+
+.profile-edit-form > div {
+  padding: 0.5rem;
+}
+
+.profile-edit-form h3 {
+  margin-top: 0;
+}
+
+.profile-edit-form .edit-input-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ProfileEdit button {
+  margin-top: 2rem;
+}
+
+.edit-form-arrow-back {
+  position: absolute;
+  margin-left: -13rem;
+  margin-top: -1.5rem;
+  cursor: pointer;
+  color: rgb(47, 47, 154);
+}
+.edit-form-arrow-back:hover {
+  font-size: 3.1rem;
+}
+.uname_invalid{
+  position: absolute;
+  color: red;
+  font-size: 0.8rem;
+  margin-top: -0.8rem;
+  margin-left: 6rem;
+}
+
+@media only screen and (max-width: 870px) {
+  .profile-edit-form {
+    width: 22rem;
+  }
+  .edit-form-arrow-back {
+    margin-left: -11.5rem;
+  }
+}
+
+@media only screen and (max-width: 435px) {
+  .edit-form-arrow-back {
+    visibility: hidden;
+  }
+}

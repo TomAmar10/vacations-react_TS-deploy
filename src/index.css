@@ -1,0 +1,31 @@
+body {
+  width: 100%;
+  position: relative;
+  top: -0.5rem;
+  left: -0.5rem;
+  background-color: rgb(232, 232, 250);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  text-align: center;
+  background-image: url("./images/background-img2.jpg");
+  background-size: cover;
+  background-position: left;
+  background-attachment: fixed;
+  background-blend-mode: overlay;
+}
+
+.flow {
+  animation: item-appear 1s ease-out forwards;
+}
+
+@keyframes item-appear {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

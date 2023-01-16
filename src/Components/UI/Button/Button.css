@@ -1,0 +1,34 @@
+.Button {
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: green;
+  min-width: 7rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  max-width: content;
+  padding: 0.5rem 1rem;
+  font-family: sans-serif;
+}
+.Button:hover {
+  min-width: 7.2rem;
+  padding: 0.5rem 1.2rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+
+@media only screen and (max-width: 500px) {
+  .Button {
+    min-width: 5.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    max-width: content;
+    padding: 0.4rem 0.5rem;
+    font-family: sans-serif;
+  }
+  .Button:hover {
+    min-width: 5.6rem;
+    padding: 0.5rem 0.7rem;
+  }
+}

@@ -1,0 +1,118 @@
+.HeaderFilters {
+  width: 100%;
+  left: 0;
+  background-color: rgb(198, 229, 240);
+  box-shadow: inset rgba(0, 0, 0, 0.19) 0px 5px 10px,
+    rgba(0, 0, 0, 0.2) 0px 4px 4px;
+  color: black;
+  height: 5rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 0.5rem;
+}
+.HeaderFilters > div {
+  height: 2rem;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+}
+.HeaderFilters > div:first-child {
+  margin-bottom: 0.5rem;
+}
+
+.SortMenu > div {
+  text-align: left;
+  display: flex;
+}
+
+.HeaderFilters img {
+  height: 100%;
+  background-color: white;
+  border: 1px rgb(165, 163, 163) solid;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.HeaderFilters img:hover {
+  background-color: rgb(248, 248, 253, 0.6);
+}
+
+.sort-items-select {
+  height: 2.1rem;
+  width: 8rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  outline: none;
+  border: 1px rgb(165, 163, 163) solid;
+  margin: 0 0.3rem;
+}
+.sort-items-select option {
+  cursor: pointer;
+}
+
+.slider-container {
+  height: 2rem;
+  width: 100%;
+  background-color: white;
+  font-size: 0.9rem;
+  padding: 0 0.5rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  border: 1px rgb(165, 163, 163) solid;
+}
+.filters-search {
+  border: 1px #ccc solid;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters-search-input {
+  margin-left: 1rem;
+  font-size: 1.1rem;
+  width: 100%;
+}
+
+@media only screen and (max-width: 1100px) {
+  .HeaderFilters > div {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 707px) {
+  .HeaderFilters > div {
+    width: 95%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .HeaderFilters {
+    height: 7.8rem;
+  }
+  .SortMenu {
+    display: flex;
+    flex-direction: column;
+  }
+  .slider-container {
+    width: 96%;
+  }
+  .sort-items-container {
+    margin-top: 0.5rem;
+  }
+  .sort-items-container > img {
+    height: 2rem;
+  }
+  .sort-items-container > select {
+    width: 100%;
+  }
+  .sort-items-select {
+    margin: 0 0.3rem 0 0;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .slider-container {
+    width: 94%;
+  }
+}

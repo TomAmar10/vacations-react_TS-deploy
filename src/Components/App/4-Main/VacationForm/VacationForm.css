@@ -1,0 +1,102 @@
+.VacationForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.VacationForm > form {
+  width: 25rem;
+  padding: 2rem 1rem;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 20px 20px 10px;
+  background-color: rgb(247, 246, 253);
+  margin-right: 5rem;
+}
+.VacationForm h2 {
+  text-align: center;
+  font-size: 1.7rem;
+  margin-top: 0;
+}
+.VacationForm .error-message {
+  color: red;
+  margin: 0;
+}
+
+.VacationForm form > div {
+  padding: 0.4rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+form > div:last-child {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.vacation-image-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.vacation-image-area > * {
+  margin-top: 1px;
+}
+.vacation-image-area input::-webkit-file-upload-button {
+  visibility: hidden;
+  width: 100%;
+}
+
+.vacation-image-area input::before {
+  content: "Choose vacation image";
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid rgb(195, 193, 193);
+  border-radius: 3px;
+  padding: 9px 0px;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  color: gray;
+}
+.uploaded input::before {
+  content: "image uploaded ✔️";
+  padding: 7px 3px;
+}
+.vacation-image-area input:hover::before {
+  border-color: black;
+}
+.vacation-image-area input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+@media only screen and (max-width: 900px) {
+  .VacationForm {
+    display: flex;
+    flex-direction: column;
+  }
+  .VacationForm > form {
+    margin: 0 0 3rem 0;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .VacationForm {
+    display: flex;
+    flex-direction: column;
+  }
+  .VacationForm > form {
+    margin: 0 0 3rem 0;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .VacationForm > form {
+    width: 85%;
+  }
+}

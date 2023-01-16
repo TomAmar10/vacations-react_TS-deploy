@@ -1,0 +1,19 @@
+.FollowButton {
+  border-radius: 10px;
+  border: 1px rgb(41, 51, 136) solid;
+  color: rgb(232, 232, 250);
+  background-color: rgb(47, 47, 154);
+  padding: 0.3rem 0;
+  width: 5rem;
+  font-size: 0.9rem;
+  box-shadow: white 0px 4px 38px, white 0px 2px 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.FollowButton:hover {
+  background-color: rgb(30, 30, 129);
+}
+.FollowButton:active {
+  background-color: rgb(12, 12, 93);
+  width: 5.1rem;
+}

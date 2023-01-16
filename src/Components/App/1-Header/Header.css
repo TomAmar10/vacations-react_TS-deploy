@@ -1,0 +1,88 @@
+.Header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  background-color: rgb(47, 47, 154);
+  font-weight: bold;
+  color: rgb(232, 232, 250);
+  z-index: 1;
+  font-family: cursive;
+}
+.left-right-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5rem 0 2rem;
+}
+.header-right-side {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 100%;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.logo-area img {
+  width: 2.6rem;
+  height: 2.7rem;
+  transition: width 0.3s;
+}
+.logo-area:hover img {
+  width: 2.8rem;
+  transition: width 0.3s;
+}
+.logo-area h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  transition: font-size 0.3s;
+}
+.logo-area:hover h3 {
+  font-size: 2.6rem;
+  transition: font-size 0.3s;
+}
+
+.header-padding {
+  height: 3rem;
+}
+
+@media only screen and (max-width: 1100px) {
+  .left-right-container {
+    padding: 0 1rem 0 1rem;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .Header {
+    height: 4rem;
+  }
+  .header-padding {
+    height: 2rem;
+  }
+  .logo-area h1 {
+    font-size: 2rem;
+  }
+  .logo-area img {
+    width: 2rem;
+    height: 2.1rem;
+  }
+  .profile-btn-img {
+    height: 3.2rem;
+    width: 3.2rem;
+  }
+  .left-right-container {
+    padding: 0 0.5rem 0 0rem;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .logo-area h1 {
+    font-size: 1.5rem;
+  }
+}

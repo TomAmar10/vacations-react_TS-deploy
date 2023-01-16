@@ -1,0 +1,7 @@
+.HomeNavigator {
+  display: flex;
+  justify-content: center;
+}
+.HomeNavigator h2 {
+  font-size: 2rem;
+}
