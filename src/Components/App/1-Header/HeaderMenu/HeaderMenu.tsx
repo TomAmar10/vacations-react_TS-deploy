@@ -24,7 +24,7 @@ function HeaderMenu(props: any) {
   const logOutClicked = () => {
     dispatch(userActions.logout());
     dispatch(vacationActions.setVacations([]));
-    navigate("/login");
+    navigate("/homepage");
   };
 
   const navigateTo = (path: string) => {

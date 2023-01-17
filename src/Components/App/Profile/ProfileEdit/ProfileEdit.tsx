@@ -18,22 +18,25 @@ import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import { modalActions, ModalType } from "../../../../store/modal-state";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import "./ProfileEdit.css";
+import React from "react";
 
 function ProfileEdit(): JSX.Element {
   interface UserEdit extends UserModel {
     prevPass: string;
   }
   const dispatch = useDispatch();
-  const [showPass, setShowPass] = useState<boolean>(false);
-  const [showNewPass, setShowNewPass] = useState<boolean>(false);
+  const [showPass, setShowPass] = useState(false);
+  const [showNewPass, setShowNewPass] = useState(false);
   const user = useSelector((state: any) => state.user.user);
   const { register, handleSubmit, reset } = useForm<UserEdit>();
   const [allUsernames, setAllUsernames] = useState<{}[]>([]);
-  const [isValidUsername, setIsValidUsername] = useState<boolean>(true);
+  const [isValidUsername, setIsValidUsername] = useState(true);
+  const [isReady, setIsReady] = useState(false);
   const [error, setError] = useState<string>();
   const navigate = useNavigate();
   useEffect(() => {
     reset({ ...user, password: "", prevPass: "" });
+    setIsReady(true);
     service.getAllUsernames().then((res) => {
       if (res.status === 200) {
         const uNames = res.data.map((u: any) => u.user_name);
@@ -70,102 +73,106 @@ function ProfileEdit(): JSX.Element {
   };
 
   return (
-    <div className="ProfileEdit flow">
-      <form
-        className="profile-edit-form"
-        onSubmit={handleSubmit(submitForm)}
-        autoComplete="off"
-      >
-        <ArrowCircleLeftIcon
-          onClick={() => navigate("/user/profile")}
-          sx={{ fontSize: "3rem" }}
-          className="edit-form-arrow-back"
-        />
-        <h3>Edit your profile</h3>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <div>
-          <TextField
-            required
-            label="first name"
-            size="small"
-            fullWidth
-            {...register("first_name")}
-            inputProps={{ minLength: 2, maxLength: 20 }}
-          />
-        </div>
-        <div>
-          <TextField
-            required
-            label="last name"
-            {...register("last_name")}
-            size="small"
-            fullWidth
-            inputProps={{ minLength: 2, maxLength: 20 }}
-          />
-        </div>
-        <div>
-          {!isValidUsername && (
-            <span className="uname_invalid">already exist...</span>
-          )}
-          <TextField
-            required
-            label="user name"
-            size="small"
-            fullWidth
-            {...register("user_name")}
-            onKeyPress={() => setIsValidUsername(true)}
-            inputProps={{ minLength: 2, maxLength: 20 }}
-          />
-        </div>
-        <div>
-          <FormControl fullWidth required size="small">
-            <InputLabel>previous password</InputLabel>
-            <OutlinedInput
-              type={showPass ? "text" : "password"}
-              {...register("prevPass")}
-              inputProps={{ minLength: 6, maxLength: 20 }}
-              fullWidth
-              label="previous password"
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setShowPass((prev) => !prev)}
-                    edge="end"
-                    sx={{ marginBottom: 4 }}
-                  >
-                    {showPass ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
+    <React.Fragment>
+      {isReady && (
+        <div className="ProfileEdit flow">
+          <form
+            className="profile-edit-form"
+            onSubmit={handleSubmit(submitForm)}
+            autoComplete="off"
+          >
+            <ArrowCircleLeftIcon
+              onClick={() => navigate("/user/profile")}
+              sx={{ fontSize: "3rem" }}
+              className="edit-form-arrow-back"
             />
-          </FormControl>
+            <h3>Edit your profile</h3>
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            <div>
+              <TextField
+                required
+                label="first name"
+                size="small"
+                fullWidth
+                {...register("first_name")}
+                inputProps={{ minLength: 2, maxLength: 20 }}
+              />
+            </div>
+            <div>
+              <TextField
+                required
+                label="last name"
+                {...register("last_name")}
+                size="small"
+                fullWidth
+                inputProps={{ minLength: 2, maxLength: 20 }}
+              />
+            </div>
+            <div>
+              {!isValidUsername && (
+                <span className="uname_invalid">already exist...</span>
+              )}
+              <TextField
+                required
+                label="user name"
+                size="small"
+                fullWidth
+                {...register("user_name")}
+                onKeyPress={() => setIsValidUsername(true)}
+                inputProps={{ minLength: 2, maxLength: 20 }}
+              />
+            </div>
+            <div>
+              <FormControl fullWidth required size="small">
+                <InputLabel>previous password</InputLabel>
+                <OutlinedInput
+                  type={showPass ? "text" : "password"}
+                  {...register("prevPass")}
+                  inputProps={{ minLength: 6, maxLength: 20 }}
+                  fullWidth
+                  label="previous password"
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => setShowPass((prev) => !prev)}
+                        edge="end"
+                        sx={{ marginBottom: 4 }}
+                      >
+                        {showPass ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+            </div>
+            <div>
+              <FormControl fullWidth required size="small">
+                <InputLabel>new password</InputLabel>
+                <OutlinedInput
+                  type={showNewPass ? "text" : "password"}
+                  {...register("password")}
+                  inputProps={{ minLength: 6, maxLength: 20 }}
+                  fullWidth
+                  label="new password"
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => setShowNewPass((prev) => !prev)}
+                        edge="end"
+                        sx={{ marginBottom: 4 }}
+                      >
+                        {showNewPass ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+            </div>
+            <Button value="save" />
+          </form>
         </div>
-        <div>
-          <FormControl fullWidth required size="small">
-            <InputLabel>new password</InputLabel>
-            <OutlinedInput
-              type={showNewPass ? "text" : "password"}
-              {...register("password")}
-              inputProps={{ minLength: 6, maxLength: 20 }}
-              fullWidth
-              label="new password"
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setShowNewPass((prev) => !prev)}
-                    edge="end"
-                    sx={{ marginBottom: 4 }}
-                  >
-                    {showNewPass ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-          </FormControl>
-        </div>
-        <Button value="save" />
-      </form>
-    </div>
+      )}
+    </React.Fragment>
   );
 }
 

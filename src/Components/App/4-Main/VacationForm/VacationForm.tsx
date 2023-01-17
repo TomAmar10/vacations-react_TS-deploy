@@ -10,6 +10,7 @@ import "./VacationForm.css";
 import { modalActions, ModalType } from "../../../../store/modal-state";
 import { TextField } from "@mui/material";
 import config from "../../../../utils/config";
+import Spinner from "../../../UI/Spinner/Spinner";
 
 function VacationForm(): JSX.Element {
   const dispatch = useDispatch();
@@ -19,9 +20,8 @@ function VacationForm(): JSX.Element {
   const user = useSelector((state: any) => state.user.user);
   const [userImage, setUserImage] = useState<any>();
   const [returnDate, setReturnDate] = useState(currDate);
-  const [prevVacation, setPrevVacation] = useState<VacationModel>(
-    new VacationModel()
-  );
+  const [isLoading, setIsLoading] = useState(false);
+  const [prevVacation, setPrevVacation] = useState(new VacationModel());
   const [imgName, setImgName] = useState<string>(defaultImage);
   const [error, setError] = useState<string>();
   const navigate = useNavigate();
@@ -30,14 +30,18 @@ function VacationForm(): JSX.Element {
 
   useEffect(() => {
     if (params.id) {
-      service.getVacation(+params.id).then((res) => {
-        setPrevVacation(res);
-        reset(res);
-        setImgName(urlPath + res.image);
-      });
+      service
+        .getVacation(+params.id)
+        .then((res) => {
+          setPrevVacation(res);
+          reset(res);
+          setImgName(urlPath + res.image);
+        })
+        .then(() => setIsLoading(true));
       return;
     }
-  }, [params.id, reset, user]);
+    setIsLoading(true);
+  }, [params.id, reset, urlPath, user]);
 
   const handleDatesMinimum = (args: SyntheticEvent) => {
     handleChanges(args, "start");
@@ -104,84 +108,92 @@ function VacationForm(): JSX.Element {
   };
 
   return (
-    <div className="VacationForm flow">
-      <form onSubmit={handleSubmit(send)} autoComplete="off">
-        <h2> {params.id ? "Edit vacation" : "Add vacation"} </h2>
-        <p className="error-message">{error && error}</p>
-        <div>
-          <TextField
-            required
-            label="Destination"
-            {...register("destination")}
-            onKeyUp={(e) => handleChanges(e, "destination")}
-            size="small"
-            fullWidth
-            inputProps={{ minLength: 2, maxLength: 15 }}
-          />
+    <React.Fragment>
+      {isLoading ? (
+        <div className="VacationForm flow">
+          <form onSubmit={handleSubmit(send)} autoComplete="off">
+            <h2> {params.id ? "Edit vacation" : "Add vacation"} </h2>
+            <p className="error-message">{error && error}</p>
+            <div>
+              <TextField
+                required
+                label="Destination"
+                {...register("destination")}
+                onKeyUp={(e) => handleChanges(e, "destination")}
+                size="small"
+                fullWidth
+                inputProps={{ minLength: 2, maxLength: 15 }}
+              />
+            </div>
+            <div>
+              <TextField
+                required
+                label="Description"
+                {...register("description")}
+                onKeyUp={(e) => handleChanges(e, "description")}
+                size="small"
+                fullWidth
+                inputProps={{ maxLength: 100 }}
+              />
+            </div>
+            <div>
+              <TextField
+                required
+                label="__ Start"
+                {...register("start")}
+                onChangeCapture={handleDatesMinimum}
+                size="small"
+                fullWidth
+                type="date"
+                inputProps={{ maxLength: 100, min: currDate }}
+              />
+            </div>
+            <div>
+              <TextField
+                required
+                label="__ Finish"
+                {...register("finish")}
+                onChangeCapture={(e) => handleChanges(e, "finish")}
+                size="small"
+                fullWidth
+                type="date"
+                inputProps={{ maxLength: 100, min: returnDate }}
+              />
+            </div>
+            <div>
+              <TextField
+                required
+                label="Price"
+                {...register("price", { valueAsNumber: true })}
+                onKeyUp={(e) => handleChanges(e, "price")}
+                size="small"
+                fullWidth
+                type="number"
+                inputProps={{ max: 99999, min: 1 }}
+              />
+            </div>
+            <div className="vacation-image-area">
+              <input
+                type="file"
+                accept=".jpg, .jpeg, .png, .webp"
+                required={params.id ? false : true}
+                onChange={handleImageChange}
+              />
+            </div>
+            <div>
+              <Button value={params.id ? "save" : "add"} />
+            </div>
+          </form>
+          {prevVacation && (
+            <VacationBox vacation={prevVacation} imgToShow={imgName} />
+          )}
         </div>
-        <div>
-          <TextField
-            required
-            label="Description"
-            {...register("description")}
-            onKeyUp={(e) => handleChanges(e, "description")}
-            size="small"
-            fullWidth
-            inputProps={{ maxLength: 100 }}
-          />
+      ) : (
+        <div className="img-loading-spinner">
+          <Spinner />
         </div>
-        <div>
-          <TextField
-            required
-            label="__ Start"
-            {...register("start")}
-            onChangeCapture={handleDatesMinimum}
-            size="small"
-            fullWidth
-            type="date"
-            inputProps={{ maxLength: 100, min: currDate }}
-          />
-        </div>
-        <div>
-          <TextField
-            required
-            label="__ Finish"
-            {...register("finish")}
-            onChangeCapture={(e) => handleChanges(e, "finish")}
-            size="small"
-            fullWidth
-            type="date"
-            inputProps={{ maxLength: 100, min: returnDate }}
-          />
-        </div>
-        <div>
-          <TextField
-            required
-            label="Price"
-            {...register("price", { valueAsNumber: true })}
-            onKeyUp={(e) => handleChanges(e, "price")}
-            size="small"
-            fullWidth
-            type="number"
-            inputProps={{ max: 99999, min: 1 }}
-          />
-        </div>
-        <div className="vacation-image-area">
-          <input
-            type="file"
-            accept=".jpg, .jpeg, .png, .webp"
-            required={params.id ? false : true}
-            onChange={handleImageChange}
-          />
-        </div>
-        <div>
-          <Button value={params.id ? "save" : "add"} />
-        </div>
-      </form>
-      {prevVacation && (
-        <VacationBox vacation={prevVacation} imgToShow={imgName} />
       )}
-    </div>
+    </React.Fragment>
   );
 }
 
