@@ -49,6 +49,12 @@ function HomePage(): JSX.Element {
     switch (result.status) {
       case 204:
         setError("No vacations to show");
+        dispatch(
+          vacationActions.setVacations({
+            vacations: [],
+            category: categories.ALL,
+          })
+        );
         break;
       case 200:
         dispatch(
