@@ -28,7 +28,6 @@ function VacationBox(props: Props): JSX.Element {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(props.imgToShow);
     if (props) {
       setVacation(props.vacation);
       setIsFollow(props.vacation.follower_id);

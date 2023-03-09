@@ -164,7 +164,11 @@ function Login(props: Props): JSX.Element {
         />
         {!props.deletePage && (
           <div>
-            <NavLink to={"/register"} className="register-navlink">
+            <NavLink
+              to={"/register"}
+              className="register-navlink"
+              onClick={() => props.onClose && props.onClose()}
+            >
               create new account
             </NavLink>
           </div>

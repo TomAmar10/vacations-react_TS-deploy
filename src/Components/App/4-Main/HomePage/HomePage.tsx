@@ -86,6 +86,7 @@ function HomePage(): JSX.Element {
     );
   };
 
+
   return (
     <div className="HomePage">
       <HeaderFilters />
